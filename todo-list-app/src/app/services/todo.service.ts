@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -11,6 +11,9 @@ export class TodoService {
 
   private http = inject(HttpClient);
 
+  readonly httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   findAll():Observable<Todos>{
     return this.http.get<Todos>(environment.urlTodos);
@@ -20,5 +23,10 @@ export class TodoService {
     const url = `${environment.urlTodos}/${todo.id}`;
 
     return this.http.delete<void>(url);
+  }
+
+  save(todo:Todo):Observable<Todo>{
+    return this.http.post<Todo>(environment.urlTodos,todo,this.httpOptions);
+
   }
 }

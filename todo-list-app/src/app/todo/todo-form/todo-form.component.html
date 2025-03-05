@@ -1,0 +1,27 @@
+<h2>Todo Template Driven Form</h2>
+
+<form (ngSubmit)="submitTodo()" #addTodoForm="ngForm">
+
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="todoForm.title" name="todoTitle" required #title="ngModel"/>
+
+    @if(title.invalid && title.touched){
+      <div class="alert">
+        Erreur
+      </div>
+    }
+  </mat-form-field>
+
+  valid: {{title.valid}}
+  invalid: {{title.invalid}}
+
+  <br />
+  <mat-checkbox [(ngModel)]="todoForm.completed" name="todoCompleted">Completed ?</mat-checkbox>
+  <br />
+
+  <button mat-flat-button [disabled]="addTodoForm.invalid" >Submit</button>
+</form>
+
+
+
