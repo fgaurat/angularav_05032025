@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../models/todo';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -13,7 +14,7 @@ import { Todo } from '../../models/todo';
   styleUrl: './todo-form.component.css'
 })
 export class TodoFormComponent {
-
+  private todoService = inject(TodoService)
 
   todoForm:Todo={
     title:"",
@@ -22,5 +23,6 @@ export class TodoFormComponent {
 
   submitTodo(){
     console.log(this.todoForm)
+    this.todoService.save(this.todoForm).subscribe()
   }
 }
