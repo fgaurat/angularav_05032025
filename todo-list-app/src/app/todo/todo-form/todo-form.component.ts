@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../models/todo';
 import { TodoService } from '../../services/todo.service';
+import { MessageQueueService } from '../../services/message-queue.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -15,6 +16,7 @@ import { TodoService } from '../../services/todo.service';
 })
 export class TodoFormComponent {
   private todoService = inject(TodoService)
+  private messageQueueService = inject(MessageQueueService)
 
   todoForm:Todo={
     title:"",
@@ -23,6 +25,6 @@ export class TodoFormComponent {
 
   submitTodo(){
     console.log(this.todoForm)
-    this.todoService.save(this.todoForm).subscribe()
+    this.todoService.save(this.todoForm).subscribe(()=>this.messageQueueService.dispatch({type:"NEW_TODO"}))
   }
 }
