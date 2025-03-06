@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Todo } from '../../models/todo';
 import { TodoService } from '../../services/todo.service';
 import { MessageQueueService } from '../../services/message-queue.service';
+import { ActionType } from '../../models/action-type';
 
 @Component({
   selector: 'app-todo-form',
@@ -25,6 +26,7 @@ export class TodoFormComponent {
 
   submitTodo(){
     console.log(this.todoForm)
-    this.todoService.save(this.todoForm).subscribe(()=>this.messageQueueService.dispatch({type:"NEW_TODO"}))
+    this.messageQueueService.dispatch({type:ActionType.NEW_TODO,payload:this.todoForm})
+    // this.todoService.save(this.todoForm).subscribe(()=>this.messageQueueService.dispatch({type:ActionType.NEW_TODO}))
   }
 }
