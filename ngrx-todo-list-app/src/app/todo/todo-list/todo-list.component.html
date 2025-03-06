@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>Completed</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(todo of todos$|async;track todo.id){
+    <tr>
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.completed }}</td>
+      <td></td>
+    </tr>
+    }
+  </tbody>
+</table>
