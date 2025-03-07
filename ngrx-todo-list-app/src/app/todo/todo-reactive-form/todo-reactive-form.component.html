@@ -1,0 +1,18 @@
+<h1>todo-reactive-form works!</h1>
+<form [formGroup]="todoForm" (ngSubmit)="onNewTodo()">
+
+  <pre>{{todoForm.valid}}</pre>
+  <label for="title">Title: </label>
+  <input id="title" type="text" formControlName="title">
+  @if(todoForm.controls.title.invalid && todoForm.controls.title.touched){
+    <div class="alert">
+      Erreur
+    </div>
+  }
+  <br>
+  <label for="completed">Completed: </label>
+  <input id="completed" type="checkbox" formControlName="completed">
+  <br>
+  <button type="submit" [disabled]="todoForm.invalid">Submit</button>
+
+</form>

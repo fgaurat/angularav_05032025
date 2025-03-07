@@ -13,7 +13,9 @@
       <td>{{ todo.id }}</td>
       <td>{{ todo.title }}</td>
       <td>{{ todo.completed }}</td>
-      <td></td>
+      <td>
+        <button (click)="onDeleteTodo(todo)">delete</button>
+      </td>
     </tr>
     }
   </tbody>
