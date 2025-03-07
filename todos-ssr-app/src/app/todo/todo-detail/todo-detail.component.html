@@ -1,0 +1,9 @@
+<h2>Todo detail</h2>
+@if(todo$|async; as todo){
+  id: {{todo.id}} <br>
+  title: {{todo.title}} <br>
+  completed: {{todo.completed}} <br>
+}
+@else {
+chargement...
+}

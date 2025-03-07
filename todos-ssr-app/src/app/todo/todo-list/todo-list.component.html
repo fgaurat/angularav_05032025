@@ -1,0 +1,23 @@
+<h2>todo-list works!</h2>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>Completed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(todo of todos$|async;track todo.id){
+    <tr>
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.completed }}</td>
+      <td>
+        <a [routerLink]="['/todos', todo.id]">Détails</a>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
